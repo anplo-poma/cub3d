@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 17:19:38 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 01:14:12 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/28 20:59:49 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	read_six_surface_to_struct(t_mapdata *mapdata, char *line)
 		mapdata->so_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		mapdata->we_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	else if (ft_strncmp(line, "EA ", 3) == 0)//load path into struct, load 
 		mapdata->ea_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		mapdata->floor_color = parse_rgb(trim_newline(skip_spaces(line + 2)));

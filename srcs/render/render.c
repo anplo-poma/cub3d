@@ -6,7 +6,7 @@
 /*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 19:31:01 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/03/28 20:21:20 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void    calcu_wall_dist(t_ray *ray)
 	else
 		ray->wall_dist = ray->sidedist_y - ray->deltadist_y;
 }
-
 
 void	calcu_wall_x(t_ray *ray, t_player *player)
 {

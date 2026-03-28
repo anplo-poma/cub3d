@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 01:11:37 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/28 20:57:02 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ typedef struct s_img
     int     endian;//bit order
 }t_img;
 
+typedef struct s_texture
+{
+    int     *pixels;   // pixel arrey
+    int     width;
+    int     height;
+} t_texture;
+
 //LINNA PART//
 /***************************************************************** */
 typedef struct s_ray
@@ -109,13 +116,17 @@ typedef struct s_game
 	void		*win;
 	int			screen_height;
 	int			screen_width;
+    
+    t_texture   tex_no;
+    t_texture   tex_so;
+    t_texture   tex_we;
+    t_texture   tex_ea;
 	t_mapdata	map;
 	t_ray		ray;
 	t_player	player;
 	t_img		img;
-}t_game;
-
-
+    t_texture texture;
+} t_game;
 
 /* ============================================================ */
 /*  srcs/init.c                                                 */
