@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_pre.c                                       :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/27 23:00:35 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/28 19:31:01 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void    calcu_wall_dist(t_ray *ray)
 		ray->wall_dist = ray->sidedist_x - ray->deltadist_x;
 	else
 		ray->wall_dist = ray->sidedist_y - ray->deltadist_y;
+}
+
+
+void	calcu_wall_x(t_ray *ray, t_player *player)
+{
+    if (ray->side == 0)
+        ray->wall_x = player->player_y + ray->wall_dist * ray->dir_y;
+    else
+        ray->wall_x = player->player_x + ray->wall_dist * ray->dir_x;
+    ray->wall_x -= floor(ray->wall_x);
 }
 
 void    calcu_wall_height(t_ray *ray, int screen_height)
