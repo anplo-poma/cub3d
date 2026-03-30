@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 22:26:59 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/30 23:01:27 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define SCREEN_H 	720
 
 #define MOVESPEED 0.05
+# define MARGIN 0.2
 
 
 typedef	struct s_mapdata{

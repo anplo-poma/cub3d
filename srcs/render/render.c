@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 22:25:38 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/30 23:04:02 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void    calcu_wall_dist(t_ray *ray)
 		ray->wall_dist = ray->sidedist_x - ray->deltadist_x;
 	else
 		ray->wall_dist = ray->sidedist_y - ray->deltadist_y;
+	if (ray->wall_dist < 0.0001)
+        ray->wall_dist = 0.0001;
 }
 
 
@@ -55,7 +57,7 @@ void    draw_column(t_img *img, t_ray *ray, t_game *game, int x)
 		put_pixel(img, x, y++, game->map.ceiling_color);
 	while (y <= ray->draw_end)
 	{
-        tex_y = (int)tc.tex_pos & (tex->height - 1);
+        tex_y = (int)tc.tex_pos % tex->height;
         tc.tex_pos += tc.step;
         put_pixel(img, x, y++,
             tex->pixels[tex_y * tex->width + tc.tex_x]);

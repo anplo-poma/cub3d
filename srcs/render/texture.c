@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 21:32:28 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 22:23:41 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/30 22:50:15 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void load_one_texture(t_game *game, t_texture *tex, char* path)
 	int     bpp;
 	int     line_len;
 	int     endian;
-	int     i;
 
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
 	if (!img_ptr)
@@ -31,11 +30,17 @@ static void load_one_texture(t_game *game, t_texture *tex, char* path)
 	tex->pixels = malloc(sizeof(int)* tex->width * tex->height);
 	if (!tex->pixels)
 		ft_error("Malloc failed in load_one_texture");
-	i = 0;
-	while (i < tex->width * tex->height)
+	int y = 0;
+	while (y < tex->height)
 	{
-		tex->pixels[i] = ((int*)addr)[i];
-		i++;
+		int x = 0;
+		while (x < tex->width)
+		{
+			tex->pixels[y * tex->width + x] =
+				*(int *)(addr + y * line_len + x * (bpp / 8));
+			x++;
+		}
+		y++;
 	}
 	mlx_destroy_image(game->mlx, img_ptr);
 }
