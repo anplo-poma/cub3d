@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 23:04:02 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/30 23:28:01 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void    render_frame(t_game *game)
 		find_wall(&ray, &game->player, game->map.matrix, x, game->screen_width);
 		calcu_wall_dist(&ray);
 		calcu_wall_height(&ray, game->screen_height);
+		calcu_wall_x(&ray, &game->player);
 		draw_column(&game->img, &ray, game, x);
 		x++;
 	}
