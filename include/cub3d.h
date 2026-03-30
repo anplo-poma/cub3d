@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 20:57:02 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/03/30 22:26:59 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ typedef struct s_texture
     int     height;
 } t_texture;
 
+//just for middle step calculation
+typedef struct s_texcalc
+{
+    int     tex_x;
+    double  step;
+    double  tex_pos;
+}   t_texcalc;
+
 //LINNA PART//
 /***************************************************************** */
 typedef struct s_ray
@@ -121,6 +129,7 @@ typedef struct s_game
     t_texture   tex_so;
     t_texture   tex_we;
     t_texture   tex_ea;
+
 	t_mapdata	map;
 	t_ray		ray;
 	t_player	player;
@@ -166,6 +175,14 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_column(t_img *img, t_ray *ray, t_game *game, int x);
 void	render_frame(t_game *game);
 
+/* ============================================================ */
+/*  srcs/render/texture.c                                       */
+/* ============================================================ */
+void    load_textures(t_game *game);
+void    calcu_wall_x(t_ray *ray, t_player *player);
+void    calcu_tex(t_ray *ray, t_texture *tex,
+                      t_texcalc *tc, int screen_height);
+t_texture   *get_texture(t_ray *ray, t_game *game);
 /* ============================================================ */
 /*  srcs/player_move.c                                          */
 /* ============================================================ */
