@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 20:21:20 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/03/30 22:25:38 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,13 @@ void    calcu_wall_dist(t_ray *ray)
 		ray->wall_dist = ray->sidedist_y - ray->deltadist_y;
 }
 
-void	calcu_wall_x(t_ray *ray, t_player *player)
-{
-    if (ray->side == 0)
-        ray->wall_x = player->player_y + ray->wall_dist * ray->dir_y;
-    else
-        ray->wall_x = player->player_x + ray->wall_dist * ray->dir_x;
-    ray->wall_x -= floor(ray->wall_x);
-}
 
 void    calcu_wall_height(t_ray *ray, int screen_height)
 {
 	ray->line_height = (int)(screen_height / ray->wall_dist);
 	ray->draw_start = -ray->line_height / 2 + screen_height / 2;
 	if (ray->draw_start < 0)
-		ray->draw_start = 0;
+		ray->draw_start = 0;//camp to avoid draw negative part
 	ray->draw_end = ray->line_height / 2 + screen_height / 2;
 	if (ray->draw_end >= screen_height)
 		ray->draw_end = screen_height - 1;
@@ -48,18 +40,26 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+
 void    draw_column(t_img *img, t_ray *ray, t_game *game, int x)
 {
+	t_texture 	*tex;
+	t_texcalc	tc;
 	int y;
+	int tex_y;
 
-	//ceiling
+	tex = get_texture(ray, game);
+	calcu_tex(ray, tex, &tc, game->screen_height);
 	y = 0;
 	while (y < ray->draw_start)
 		put_pixel(img, x, y++, game->map.ceiling_color);
-	//wall without texture
 	while (y <= ray->draw_end)
-		put_pixel(img, x, y++, ray->side == 1 ? 0xAAAAAA : 0xFFFFFF);
-	//floor
+	{
+        tex_y = (int)tc.tex_pos & (tex->height - 1);
+        tc.tex_pos += tc.step;
+        put_pixel(img, x, y++,
+            tex->pixels[tex_y * tex->width + tc.tex_x]);
+    }
 	while (y < game->screen_height)
 		put_pixel(img, x, y++, game->map.floor_color);
 }

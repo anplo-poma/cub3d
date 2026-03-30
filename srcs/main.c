@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:05:18 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 20:35:42 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/03/30 22:00:45 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	//debug_matrix(&game.map);//check map
 	//check_map(av[1], &game);
 	init_mlx(&game);
-	load_textures(&game); //not init in init_game because not 
+	load_textures(&game); //not init in init_game because not created yet
 	setup_hooks(&game);
 	mlx_loop(game.mlx);
 	return (0);
