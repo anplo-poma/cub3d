@@ -1,11 +1,10 @@
-NO ./texture/no_bluewall.xpm
-SO ./texture/so_greywall.xpm
-WE ./texture/we_purplewall.xpm
-EA ./texture/ea_yellowwall.xpm
+NO ./texture/bluewall.xpm
+SO ./texture/bluewall.xpm
+WE ./texture/bluewall.xpm
+EA ./texture/bluewall.xpm
 
 F 220,100,0
 C 225,30,0
-
 
 111111
 110001
