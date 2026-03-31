@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:07:15 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/27 23:15:20 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/31 17:31:39 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	key_press(int keycode, t_game *game)
 		game->move_x = -1;
 	if (keycode == KEY_D)
 		game->move_x = 1;
+	if (keycode == KEY_LEFT)
+		game->rotate = -1;
+    if (keycode == KEY_RIGHT)
+		game->rotate = 1;
 	return (0);
 }
 
@@ -41,6 +45,10 @@ int	key_release(int keycode, t_game *game)
 		game->move_x = 0;
 	if (keycode == KEY_D && game->move_x == 1)
 		game->move_x = 0;
+	if (keycode == KEY_LEFT  && game->rotate == -1)
+		game->rotate = 0;
+    if (keycode == KEY_RIGHT && game->rotate == 1) 
+		game->rotate = 0;
 	return (0);
 }
 

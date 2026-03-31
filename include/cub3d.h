@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 23:01:27 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/31 17:27:17 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@
 # define KEY_D      100
 # define KEY_ESC    65307
 
+# define KEY_LEFT   65361// ← 
+# define KEY_RIGHT  65363// → 
+
 # define SCREEN_W 	1280
 # define SCREEN_H 	720
 
-#define MOVESPEED 0.05
+# define MOVESPEED 0.05
+# define ROTSPEED   0.03//每帧旋转弧度
 # define MARGIN 0.2
 
 
@@ -125,6 +129,7 @@ typedef struct s_game
 	void		*win;
 	int			screen_height;
 	int			screen_width;
+    int         rotate;   // LEFT=-1, RIGHT=1, no rotate=0
     
     t_texture   tex_no;
     t_texture   tex_so;
