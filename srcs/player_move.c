@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:03:30 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 23:03:21 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/03/31 17:45:08 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,35 @@ static void	move_right(t_game *game)
         game->player.player_y = new_y;
 }
 
+//旋转 = 角度相加，角度相加 = cos/sin 的展开式。
+/*
+(x, y) = (cos α, sin α)
+turn angle:
+(cos(α+θ), sin(α+θ))
+=
+cos(α+θ) = cos α · cos θ  -  sin α · sin θ
+sin(α+θ) = cos α · sin θ  +  sin α · cos θ
+
+cos α = x，sin α = y
+
+new_x = x · cosθ - y · sinθ
+new_y = x · sinθ + y · cosθ
+
+*/
+void	rotate_player(t_game * game, double angle)
+{
+	t_player	*p;
+	double		old_dir_x;
+	double		old_plane_x;
+
+	p = &game->player;
+	old_dir_x = p->player_dir_x;
+	p->player_dir_x = old_dir_x * cos(angle) - p->player_dir_y * sin(angle);
+	p->player_dir_y = old_dir_x * sin(angle) + p->player_dir_y * cos(angle);
+	old_plane_x = p->plane_x;
+    p->plane_x = old_plane_x * cos(angle) - p->plane_y * sin(angle);
+    p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
+}
 
 void	move_player(t_game *game)
 {
@@ -103,5 +132,9 @@ void	move_player(t_game *game)
 		move_right(game);
 	if (game->move_x == 1)
 		move_left(game);
+	if (game->rotate == 1)
+		rotate_player(game, ROTSPEED);   //turn left
+    if (game->rotate == -1)
+		rotate_player(game, -ROTSPEED); //right
 }
-	
+
