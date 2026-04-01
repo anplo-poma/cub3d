@@ -7,6 +7,8 @@ NAME    = cub3D
 SRCS_DIR    = srcs
 INCL_DIR    = include
 MLX_DIR     = minilibx-linux
+##------- ONLY for linna test on her own pc ---------
+# MLX_DIR = minilibx-mac-osx
 LIBFT_DIR   = libft
 GNL_DIR     = get_next_line
 PRINTF_DIR  = ft_printf
@@ -15,6 +17,8 @@ PRINTF_DIR  = ft_printf
 
 MLX_LIB     = $(MLX_DIR)/libmlx_Linux.a
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
+##------- ONLY for linna test on her own pc ---------
+## MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 PRINTF_LIB  = $(PRINTF_DIR)/libftprintf.a
 
@@ -32,6 +36,7 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(SRCS_DIR)/exit/free.c \
               $(SRCS_DIR)/parsing/check_cub_file.c \
               $(SRCS_DIR)/parsing/check_map.c \
+			  $(SRCS_DIR)/parsing/validate_map.c \
               $(SRCS_DIR)/parsing/parsing_toolbox.c \
 			  $(SRCS_DIR)/parsing/parsing_toolbox2.c \
               $(GNL_DIR)/get_next_line.c \

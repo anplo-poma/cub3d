@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/31 17:27:17 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/01 20:13:23 by hannahhao        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void	parse_cub(const char *filename, t_game *game);
 void	read_map_to_str(t_mapdata *mapdata, char *line);
 void	build_matrix(t_mapdata *mapdata);
 void	pad_matrix_rows(t_game *game); 
-void	validate_map(t_mapdata *mapdata);       //later
+void	validate_map(t_game *game);      //later
 
 /* ============================================================ */
 /*  srcs/parsing/parsing_toolbox.c                              */
@@ -237,7 +237,7 @@ void	ft_cub_strlcpy(char *dst, const char *src, size_t dest_siz);
 char	*trim_newline(char *s);
 int		is_empty_line(char *line);
 int		is_map_line(char *line);
-
+int     is_valid_pos(t_mapdata *map, int y, int x);
 
 
 #endif

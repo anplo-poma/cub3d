@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_toolbox2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:52:06 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 00:31:30 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/01 20:13:15 by hannahhao        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ int	is_map_line(char *line)
 		return (0);
 	return (*p == '0' || *p == '1' || *p == 'N' || *p == 'S'
 		|| *p == 'E' || *p == 'W' || *p == ' ');
+}
+
+int	is_valid_pos(t_mapdata *map, int y, int x)
+{
+	int	len;
+
+	if (y < 0 || y >= map->rows)
+		return (0);
+	len = ft_strlen(map->matrix[y]);
+	if (x < 0 || x >= len)
+		return (0);
+	if (map->matrix[y][x] == ' ')
+		return (0);
+	return (1);
 }

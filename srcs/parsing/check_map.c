@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:31:54 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 01:13:31 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/01 20:26:03 by hannahhao        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,3 @@ void	pad_matrix_rows(t_game *game)
 	}
 	map->matrix[map->rows] = NULL;
 }
-
-void	validate_map(t_mapdata *mapdata)
-{
-	(void)mapdata;
-}
-

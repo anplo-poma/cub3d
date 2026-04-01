@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 17:19:38 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 20:59:49 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:40:56 by hannahhao        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 #include "cub3d.h"
 
@@ -318,5 +319,5 @@ void	parse_cub(const char *filename, t_game *game)
 	read_cub_file(filename, game);
 	build_matrix(&game->map);
 	pad_matrix_rows(game);
-	validate_map(&game->map);
+	validate_map(game);
 }
