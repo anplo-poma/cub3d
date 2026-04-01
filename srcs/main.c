@@ -17,17 +17,15 @@ static void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-	{
-		ft_error("Error: mlx_init failed\n");
-	}
+		ft_error(game, "mlx_init failed");
 	game->win = mlx_new_window(game->mlx, game->screen_width,
 			game->screen_height, "cub3D");
 	if (!game->win)
-	{
-		ft_error("Error: mlx_new_window failed\n");
-	}
+		ft_error(game, "mlx_new_window failed");
 	game->img.img_ptr = mlx_new_image(game->mlx,
 			game->screen_width, game->screen_height);
+	if (!game->img.img_ptr)
+		ft_error(game, "mlx_new_image failed");
 	game->img.addr = mlx_get_data_addr(game->img.img_ptr,
 			&game->img.bpp, &game->img.line_len, &game->img.endian);
 }
@@ -42,7 +40,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_game(&game);
-	parse_cub(av[1], &game.map);
+	parse_cub(av[1], &game);
 	find_player_location(&game);
 	//debug_matrix(&game.map);//check map
 	//check_map(av[1], &game);

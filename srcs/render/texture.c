@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+
+//special free for mlx becuase here the img_ptr has not in game struct yet need to free
 static void load_one_texture(t_game *game, t_texture *tex, char* path)
 {
 	void    *img_ptr;
@@ -22,14 +24,14 @@ static void load_one_texture(t_game *game, t_texture *tex, char* path)
 
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
 	if (!img_ptr)
-	{
-		ft_printf("Error: failed to load: '%s'\n", path);
-		ft_error("texture load failed\n");
-	}
+		ft_error(game, "texture loading failed\n");
 	addr = mlx_get_data_addr(img_ptr, &bpp, &line_len, &endian);
 	tex->pixels = malloc(sizeof(int)* tex->width * tex->height);
 	if (!tex->pixels)
-		ft_error("Malloc failed in load_one_texture");
+	{
+		mlx_destroy_image(game->mlx, img_ptr);
+		ft_error(game, "malloc failed in load_one_texture");
+	}
 	int y = 0;
 	while (y < tex->height)
 	{

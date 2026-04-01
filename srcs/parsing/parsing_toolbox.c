@@ -20,12 +20,12 @@ char	*skip_spaces(char *str)
 }
 
 // without free version(free once in gnl)
-int	handle_empty_line(char *line, int map_start)
+int	handle_empty_line(t_game *game, char *line, int map_start)
 {
 	if (!is_empty_line(line))
 		return (0);
 	if (map_start == 1)
-		ft_error("empty line in map");
+		ft_error(game, "empty line in map");
 	return (1);
 }
 /*

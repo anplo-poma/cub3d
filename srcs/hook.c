@@ -16,8 +16,7 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-		mlx_destroy_window(game->mlx, game->win);
-        ft_free_all();//later
+        ft_free_all(game);//later
 		exit(0);
 	}
 	if (keycode == KEY_W)
@@ -54,8 +53,8 @@ int	key_release(int keycode, t_game *game)
 
 int	close_window(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-    ft_free_all();//later
+	//game->win = NULL;
+    ft_free_all(game);//later
 	exit(0);
 	return (0);
 }

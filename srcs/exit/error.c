@@ -12,9 +12,9 @@
 
 #include "cub3d.h"
 
-int	ft_error(const char *errmsg)
+int	ft_error(t_game *game, const char *errmsg)
 {
-	ft_free_all();
 	ft_printf("Error\n%s\n", errmsg);
+	ft_free_all(game);
 	exit(1);
 }
