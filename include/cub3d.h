@@ -203,40 +203,40 @@ void	find_player_location(t_game *game);
 /* ============================================================ */
 /*  srcs/exit/error.c                                           */
 /* ============================================================ */
-int		ft_error(const char *errmsg);
+int		ft_error(t_game *game, const char *errmsg);
 
 /* ============================================================ */
 /*  srcs/exit/free.c                                            */
 /* ============================================================ */
-void	ft_free_all(void);
+void	ft_free_all(t_game *game);
 void	ft_free_matrix(char **matrix);
 
 /* ============================================================ */
 /*  srcs/parsing/check_cub_file.c                               */
 /* ============================================================ */
-void	read_six_surface_to_struct(t_mapdata *mapdata, char *line);
-void	read_cub_file(const char *filename, t_mapdata *mapdata);
+void	read_six_surface_to_struct(t_game *game, char *line);
+void	read_cub_file(const char *filename, t_game *game);
 int		check_map_extension(const char *filename);
-void	parse_cub(const char *filename, t_mapdata *mapdata);
+void	parse_cub(const char *filename, t_game *game);
 //void	debug_matrix(t_mapdata *mapdata);
 /* ============================================================ */
 /*  srcs/parsing/check_map.c                                    */
 /* ============================================================ */
 void	read_map_to_str(t_mapdata *mapdata, char *line);
 void	build_matrix(t_mapdata *mapdata);
-void	pad_matrix_rows(t_mapdata *mapdata);
+void	pad_matrix_rows(t_game *game); 
 void	validate_map(t_mapdata *mapdata);       //later
 
 /* ============================================================ */
 /*  srcs/parsing/parsing_toolbox.c                              */
 /* ============================================================ */
 char	*skip_spaces(char *str);
-int		handle_empty_line(char *line, int map_start);
+int		handle_empty_line(t_game *game, char *line, int map_start);
 int		is_all_digits(char *str);
 void	ft_cub_strlcpy(char *dst, const char *src, size_t dest_siz);
 char	*trim_newline(char *s);
-int		is_empty_line(char *line);             /* 被调用但未见定义，需要你补 */
-int		is_map_line(char *line);               /* 同上 */
+int		is_empty_line(char *line);
+int		is_map_line(char *line);
 
 
 

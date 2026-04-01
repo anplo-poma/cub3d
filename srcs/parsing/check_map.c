@@ -40,29 +40,31 @@ void build_matrix(t_mapdata *mapdata)
     mapdata->cols = max_len;
 }
 
-void	pad_matrix_rows(t_mapdata *mapdata)
+void	pad_matrix_rows(t_game *game)
 {
+	t_mapdata	*map;
 	int		i;
 	int		j;
 
-	mapdata->matrix = malloc(sizeof(char *) * (mapdata->rows + 1));
-	if (!mapdata->matrix)
-		ft_error("malloc failed");
+	map = &game->map;
+	map->matrix = malloc(sizeof(char *) * (map->rows + 1));
+	if (!map->matrix)
+		ft_error(game, "malloc failed");
 	i = 0;
-	while (i < mapdata->rows)
+	while (i < map->rows)
 	{
-		mapdata->matrix[i] = malloc(mapdata->cols + 1);
-		if (!mapdata->matrix[i])
-			ft_error("malloc failed");
+		map->matrix[i] = malloc(map->cols + 1);
+		if (!map->matrix[i])
+			ft_error(game, "malloc failed");
 		j = 0;
-		while (j < mapdata->cols)
-			mapdata->matrix[i][j++] = ' ';
-		mapdata->matrix[i][mapdata->cols] = '\0';
-		ft_cub_strlcpy(mapdata->matrix[i], mapdata->raw_lines[i],
-			ft_strlen(mapdata->raw_lines[i]) + 1);
+		while (j < map->cols)
+			map->matrix[i][j++] = ' ';
+		map->matrix[i][map->cols] = '\0';
+		ft_cub_strlcpy(map->matrix[i], map->raw_lines[i],
+			ft_strlen(map->raw_lines[i]) + 1);
 		i++;
 	}
-	mapdata->matrix[mapdata->rows] = NULL;
+	map->matrix[map->rows] = NULL;
 }
 
 void	validate_map(t_mapdata *mapdata)

@@ -60,5 +60,5 @@ void	find_player_location(t_game *game)
 		}
 		y++;
 	}
-	ft_error("No player spawn found in map\n");//later
+	ft_error(game, "No player spawn found in map\n");
 }

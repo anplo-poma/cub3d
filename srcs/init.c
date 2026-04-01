@@ -67,16 +67,34 @@ static void	init_ray(t_ray *ray)
 	ray->draw_end = 0;
 }
 
+static void	init_textures(t_game *game)
+{
+	game->tex_no.pixels = NULL;
+	game->tex_no.width = 0;
+	game->tex_no.height = 0;
+	game->tex_so.pixels = NULL;
+	game->tex_so.width = 0;
+	game->tex_so.height = 0;
+	game->tex_we.pixels = NULL;
+	game->tex_we.width = 0;
+	game->tex_we.height = 0;
+	game->tex_ea.pixels = NULL;
+	game->tex_ea.width = 0;
+	game->tex_ea.height = 0;
+}
+
 void	init_game(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
 	game->screen_width = SCREEN_W;
 	game->screen_height = SCREEN_H;
+	game->rotate = 0;
 	game->move_x = 0;
 	game->move_y = 0;
 	init_mapdata(&game->map);
 	init_player(&game->player);
 	init_img(&game->img);
 	init_ray(&game->ray);
+	init_textures(game);
 }
