@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:26:10 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/27 23:53:24 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/02 23:23:31 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	find_player_location(t_game *game)
 		}
 		y++;
 	}
-	ft_error(game, "No player spawn found in map\n");
+	ft_error(game, "No player spawn found in map");
 }

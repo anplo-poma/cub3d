@@ -6,70 +6,100 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 17:19:38 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/02 21:22:50 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/02 23:22:40 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	parse_rgb(t_game *game, char *str)
+static int  parse_rgb(char *str)
 {
-	char	**parts;
-	int		rgb[3];
-	int		i;
+    char    **parts;
+    int     rgb[3];
+    int     i;
 
-	parts = ft_split(str, ',');
-	if (!parts)
-		ft_error(game, "invalid color");
-	i = 0;
-	while (parts[i])
-		i++;
-	if (i != 3)
-	{
-		ft_free_matrix(parts);
-		ft_error(game, "invalid color: need 3 values for R,G and B");
-	}
-	i = 0;
-	while (i < 3)
-	{
-		if (!is_all_digits(parts[i]))
-		{
-			ft_free_matrix(parts);
-			ft_error(game, "invalid color: not a number");
-		}
-		rgb[i] = ft_atoi(parts[i]);
-		if (rgb[i] < 0 || rgb[i] > 255)
-		{
-			ft_free_matrix(parts);
-			ft_error(game, "invalid color: out of range 0-255");
-		}
-		i++;
-	}
-	ft_free_matrix(parts);
-	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
+    parts = ft_split(str, ',');
+    if (!parts)
+        return (-1);
+    i = 0;
+    while (parts[i])
+        i++;
+    if (i != 3)
+        return (ft_free_matrix(parts), -1);
+    i = 0;
+    while (i < 3)
+    {
+        rgb[i] = ft_atoi(parts[i]);
+        if (!is_all_digits(parts[i]) || rgb[i] < 0 || rgb[i] > 255)
+            return (ft_free_matrix(parts), -1);
+        i++;
+    }
+    ft_free_matrix(parts);
+    return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
-void	read_six_surface_to_struct(t_game *game, char *line)
+static void set_texture(t_game *game, char *line, char **field, char *value)
 {
-	t_mapdata	*map;
+    if (*field)
+    {
+        free(line);
+        ft_error(game, "duplicate texture identifier");
+    }
+    *field = ft_strdup(value);
+    if (!*field)
+    {
+        free(line);
+        ft_error(game, "malloc failed in set_texture");
+    }
+}
 
-	map = &game->map;
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		map->no_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-		map->so_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-		map->we_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-		map->ea_texture = ft_strdup(trim_newline(skip_spaces(line + 3)));
-	else if (ft_strncmp(line, "F ", 2) == 0)
-		map->floor_color = parse_rgb(game,
-				trim_newline(skip_spaces(line + 2)));
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		map->ceiling_color = parse_rgb(game,
-				trim_newline(skip_spaces(line + 2)));
-	else
-		ft_error(game, "unknown identifier");
+static void set_color(t_game *game, char *line, int *field, char *value)
+{
+    int color;
+
+    color = parse_rgb(value);
+    if (color < 0)
+    {
+        free(line);
+        ft_error(game, "invalid color value");
+    }
+    if (*field != -1)
+    {
+        free(line);
+        ft_error(game, "duplicate color identifier");
+    }
+    *field = color;
+}
+
+
+void    read_six_surface_to_struct(t_game *game, char *line)
+{
+    t_mapdata   *map;
+
+    map = &game->map;
+    if (ft_strncmp(line, "NO ", 3) == 0)
+        set_texture(game, line, &map->no_texture,
+            trim_newline(skip_spaces(line + 3)));
+    else if (ft_strncmp(line, "SO ", 3) == 0)
+        set_texture(game, line, &map->so_texture,
+            trim_newline(skip_spaces(line + 3)));
+    else if (ft_strncmp(line, "WE ", 3) == 0)
+        set_texture(game, line, &map->we_texture,
+            trim_newline(skip_spaces(line + 3)));
+    else if (ft_strncmp(line, "EA ", 3) == 0)
+        set_texture(game, line, &map->ea_texture,
+            trim_newline(skip_spaces(line + 3)));
+    else if (ft_strncmp(line, "F ", 2) == 0)
+        set_color(game, line, &map->floor_color,
+            trim_newline(skip_spaces(line + 2)));
+    else if (ft_strncmp(line, "C ", 2) == 0)
+        set_color(game, line, &map->ceiling_color,
+            trim_newline(skip_spaces(line + 2)));
+    else
+    {
+        free(line);
+        ft_error(game, "unknown identifier");
+    }
 }
 
 static void	process_line(t_game *game, char *line, int *map_start, int *map_end)
@@ -134,10 +164,14 @@ int	check_map_extension(const char *filename)
 	return (1);
 }
 
-void	parse_cub(const char *filename, t_game *game)
+void	parse_cub(const char *filename, t_game *game, t_mapdata *map)
 {
 	if (!check_map_extension(filename))
 		ft_error(game, "invalid file extension");
+	if (!map->no_texture || !map->so_texture || !map->we_texture || !map->ea_texture)
+		ft_error(game, "missing texture identifier");
+	if (map->floor_color == -1 || map->ceiling_color == -1) 
+		ft_error(game, "missing F or C color");
 	read_cub_file(filename, game);
 	build_matrix(&game->map);
 	pad_matrix_rows(game);

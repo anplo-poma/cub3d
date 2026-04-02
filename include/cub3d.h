@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:17:04 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/01 20:13:23 by hannahhao        ###   ########.fr       */
+/*   Updated: 2026/04/02 23:18:36 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ typedef struct s_game
 	t_ray		ray;
 	t_player	player;
 	t_img		img;
-    t_texture texture;
+
+    int			fd;
 } t_game;
 
 /* ============================================================ */
@@ -217,7 +218,7 @@ void	ft_free_matrix(char **matrix);
 void	read_six_surface_to_struct(t_game *game, char *line);
 void	read_cub_file(const char *filename, t_game *game);
 int		check_map_extension(const char *filename);
-void	parse_cub(const char *filename, t_game *game);
+void	parse_cub(const char *filename, t_game *game, t_mapdata *map);
 //void	debug_matrix(t_mapdata *mapdata);
 /* ============================================================ */
 /*  srcs/parsing/check_map.c                                    */

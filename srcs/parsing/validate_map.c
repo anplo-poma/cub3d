@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:31:54 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/01 20:27:07 by hannahhao        ###   ########.fr       */
+/*   Updated: 2026/04/02 23:23:19 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,24 @@ static int	check_closed(t_mapdata *map)
 	return (1);
 }
 
+static void check_required_content(t_game *game)
+{
+    t_mapdata *map;
+
+    map = &game->map;
+    if (!map->no_texture || !map->so_texture
+        || !map->we_texture || !map->ea_texture)
+        ft_error(game, "missing texture identifier (NO/SO/WE/EA)");
+    if (map->floor_color == -1 || map->ceiling_color == -1)
+        ft_error(game, "missing color identifier (F/C)");
+}
+
 void	validate_map(t_game *game)
 {
 	t_mapdata	*map;
+
 	map = &game->map;
+	 check_required_content(game); 
 	if (!check_valid_char(map))
 		ft_error(game, "Map contains invalid characters.");
 	if (!check_player_num(map))
