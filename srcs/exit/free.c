@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:10:07 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/01 20:27:55 by hannahhao        ###   ########.fr       */
+/*   Updated: 2026/04/02 22:54:42 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ void	ft_free_all(t_game *game)
 {
 	if (!game)
 		return ;
+	get_next_line(-1);
+	if (game->fd > 0)
+    	close(game->fd);
 	ft_free_mapdata(&game->map);
 	ft_free_textures(game);
 	ft_free_mlx(game);

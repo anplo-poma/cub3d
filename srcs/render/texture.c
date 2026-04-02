@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 21:32:28 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/30 22:50:15 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/02 23:23:34 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void load_one_texture(t_game *game, t_texture *tex, char* path)
 
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
 	if (!img_ptr)
-		ft_error(game, "texture loading failed\n");
+		ft_error(game, "texture loading failed");
 	addr = mlx_get_data_addr(img_ptr, &bpp, &line_len, &endian);
 	tex->pixels = malloc(sizeof(int)* tex->width * tex->height);
 	if (!tex->pixels)

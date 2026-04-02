@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:47:10 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 00:29:47 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/02 23:15:23 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	init_mapdata(t_mapdata *map)
 	map->so_texture = NULL;
 	map->we_texture = NULL;
 	map->ea_texture = NULL;
-	map->floor_color = 0;
-	map->ceiling_color = 0;
+	map->floor_color = -1;
+	map->ceiling_color = -1;
 	map->rows = 0;
 	map->cols = 0;
 	map->raw_str = ft_strdup("");   // new version ori NULL
