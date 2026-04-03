@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:47:10 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/02 23:15:23 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/03 15:10:58 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	init_game(t_game *game)
 	game->rotate = 0;
 	game->move_x = 0;
 	game->move_y = 0;
+	game->fd = -1;
 	init_mapdata(&game->map);
 	init_player(&game->player);
 	init_img(&game->img);

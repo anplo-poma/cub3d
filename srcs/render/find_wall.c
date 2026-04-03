@@ -73,7 +73,9 @@ void    dda_hit_wall(t_ray *ray, int hit, char **map)
             ray->map_y += ray->step_y;
             ray->side = 1;
         }
-        if(map[ray->map_y][ray->map_x]== '1')
+        if (ray->map_x < 0 || ray->map_y < 0)
+            hit = 1;
+        else if (map[ray->map_y] && map[ray->map_y][ray->map_x] == '1')
             hit = 1;
     }
 }
