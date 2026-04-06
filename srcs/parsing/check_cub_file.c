@@ -6,7 +6,7 @@
 /*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 17:19:38 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/02 23:22:40 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/06 13:54:47 by xueyan_wang      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,12 @@ static void	each_line_check(t_game *game, int fd)
 
 void	read_cub_file(const char *filename, t_game *game)
 {
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	game->fd = open(filename, O_RDONLY);
+	if (game->fd < 0)
 		ft_error(game, "cannot open file");
-	each_line_check(game, fd);
-	close(fd);
+	each_line_check(game, game->fd);
+	close(game->fd);
+    game->fd = -1;
 }
 
 int	check_map_extension(const char *filename)
@@ -169,8 +168,6 @@ void	parse_cub(const char *filename, t_game *game, t_mapdata *map)
 	if (!check_map_extension(filename))
 		ft_error(game, "invalid file extension");
 	read_cub_file(filename, game);
-	if (!map->no_texture || !map->so_texture || !map->we_texture || !map->ea_texture)
-		ft_error(game, "missing texture identifier");
 	if (map->floor_color == -1 || map->ceiling_color == -1) 
 		ft_error(game, "missing F or C color");
 	build_matrix(&game->map);
