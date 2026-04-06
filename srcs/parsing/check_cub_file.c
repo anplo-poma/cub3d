@@ -168,11 +168,11 @@ void	parse_cub(const char *filename, t_game *game, t_mapdata *map)
 {
 	if (!check_map_extension(filename))
 		ft_error(game, "invalid file extension");
+	read_cub_file(filename, game);
 	if (!map->no_texture || !map->so_texture || !map->we_texture || !map->ea_texture)
 		ft_error(game, "missing texture identifier");
 	if (map->floor_color == -1 || map->ceiling_color == -1) 
 		ft_error(game, "missing F or C color");
-	read_cub_file(filename, game);
 	build_matrix(&game->map);
 	pad_matrix_rows(game);
 	validate_map(game);

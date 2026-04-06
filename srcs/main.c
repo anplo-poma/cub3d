@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_game(&game);
-	parse_cub(av[1], &game);
+	parse_cub(av[1], &game, &game.map);
 	find_player_location(&game);
 	//debug_matrix(&game.map);//check map
 	//check_map(av[1], &game);
