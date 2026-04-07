@@ -12,39 +12,39 @@
 
 #include "cub3d.h"
 
-void	read_map_to_str(t_mapdata *mapdata, char* line)
+void	read_map_to_str(t_mapdata *mapdata, char *line)
 {
-	char*	tmp;
+	char	*tmp;
+
 	tmp = mapdata->raw_str;
-    mapdata->raw_str = ft_strjoin(mapdata->raw_str, line);
-    free(tmp);
+	mapdata->raw_str = ft_strjoin(mapdata->raw_str, line);
+	free(tmp);
 }
 
-
-void build_matrix(t_mapdata *mapdata)
+void	build_matrix(t_mapdata *mapdata)
 {
-    int     i;
-    int     max_len;
+	int	i;
+	int	max_len;
 
-    mapdata->raw_lines = ft_split(mapdata->raw_str, '\n');
+	mapdata->raw_lines = ft_split(mapdata->raw_str, '\n');
     //free(mapdata->raw_str); could give it to free all later
-    i = 0;
-    max_len = 0;
-    while (mapdata->raw_lines[i])
-    {
-        if ((int)ft_strlen(mapdata->raw_lines[i]) > max_len)
-            max_len = ft_strlen(mapdata->raw_lines[i]);
-        i++;
-    }
-    mapdata->rows = i;
-    mapdata->cols = max_len;
+	i = 0;
+	max_len = 0;
+	while (mapdata->raw_lines[i])
+	{
+		if ((int)ft_strlen(mapdata->raw_lines[i]) > max_len)
+			max_len = ft_strlen(mapdata->raw_lines[i]);
+		i++;
+	}
+	mapdata->rows = i;
+	mapdata->cols = max_len;
 }
 
 void	pad_matrix_rows(t_game *game)
 {
 	t_mapdata	*map;
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	map = &game->map;
 	map->matrix = malloc(sizeof(char *) * (map->rows + 1));

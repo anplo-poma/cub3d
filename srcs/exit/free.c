@@ -116,7 +116,7 @@ void	ft_free_all(t_game *game)
 		return ;
 	get_next_line(-1);
 	if (game->fd > 0)
-    	close(game->fd);
+		close(game->fd);
 	ft_free_mapdata(&game->map);
 	ft_free_textures(game);
 	ft_free_mlx(game);

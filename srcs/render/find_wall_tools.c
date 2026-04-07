@@ -12,38 +12,64 @@
 
 #include "cub3d.h"
 
-//dda部分，以地图内的格子为界，判断当前格子是否为墙壁, side
-static void	dda_hit_wall(t_ray *ray, int hit, char **map)
+// 计算射线偏移量
+// 此处x为射线相对屏幕的位置，如屏幕为600px，x可以为0-599，0为屏幕最左，599为最右
+void	calcu_camera_x(t_ray *ray, int x, int screen_width)
 {
-	while (hit == 0)
-	{
-		if (ray->sidedist_x < ray->sidedist_y)
-		{
-			ray->sidedist_x += ray->deltadist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->sidedist_y += ray->deltadist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
-		if (ray->map_x < 0 || ray->map_y < 0)
-			hit = 1;
-		else if (map[ray->map_y] && map[ray->map_y][ray->map_x] == '1')
-			hit = 1;
-	}
+	if (!ray || screen_width == 0)
+		return ;
+	ray->camera_x = 2.0 * x / (double)screen_width - 1.0;
 }
 
-void	find_wall(t_ray *ray, t_game *game, int x)
+// 计算射线的方向，dir_x, dir_y
+void	calcu_ray_dir(t_ray *ray, t_player *player)
 {
-	calcu_camera_x(ray, x, game->screen_width);
-	calcu_ray_dir(ray, &game->player);
-	calcu_deltadist(ray);
-	init_step(ray);
-	calcu_sidedist(ray, &game->player);
-	dda_hit_wall(ray, 0, game->map.matrix);
+	if (!ray)
+		return ;
+	ray->dir_x = player->player_dir_x + player->plane_x * ray->camera_x;
+	ray->dir_y = player->player_dir_y + player->plane_y * ray->camera_x;
+}
+
+// 计算射线在X方向的投影走1，沿射线会走多远, deltadist_x deltadist_y 
+void	calcu_deltadist(t_ray *ray)
+{
+	if (!ray)
+		return ;
+	ray->deltadist_x = fabs(1 / ray->dir_x);
+	ray->deltadist_y = fabs(1 / ray->dir_y);
+}
+
+// 从玩家位置出发，沿射线走，要走多远才会碰到相邻的格子的边界
+// 此处未包含到struct的参数：player_x/player_y（玩家当前位置）
+void	calcu_sidedist(t_ray *ray, t_player *player)
+{
+	if (!ray)
+		return ;
+	if (ray->dir_x > 0)
+		ray->sidedist_x = (ray->map_x + 1.0 - player->player_x) \
+		* ray->deltadist_x;
+	else
+		ray->sidedist_x = (player->player_x - ray->map_x) \
+		* ray->deltadist_x;
+	if (ray->dir_y > 0)
+		ray->sidedist_y = (ray->map_y + 1.0 - player->player_y) \
+		* ray->deltadist_y;
+	else
+		ray->sidedist_y = (player->player_y - ray->map_y) * \
+		ray->deltadist_y;
+}
+
+// 根据行进方向，初始化step的值
+void	init_step(t_ray *ray)
+{
+	if (ray->dir_x < 0)
+		ray->step_x = -1;
+	else
+		ray->step_x = 1;
+	if (ray->dir_y < 0)
+		ray->step_y = -1;
+	else
+		ray->step_y = 1;
 }
 
 // for test

@@ -22,10 +22,11 @@ static int	check_valid_char(t_mapdata *map)
 	while (map->matrix[y])
 	{
 		x = 0;
-		while(map->matrix[y][x])
+		while (map->matrix[y][x])
 		{
 			c = map->matrix[y][x];
-			if (c != '0' && c != '1' && c != ' ' && c != 'N' && c != 'E' && c != 'S' && c != 'W')
+			if (c != '0' && c != '1' && c != ' ' && \
+				c != 'N' && c != 'E' && c != 'S' && c != 'W')
 				return (0);
 			x++;
 		}
@@ -39,14 +40,14 @@ static int	check_player_num(t_mapdata *map)
 	int	y;
 	int	x;
 	int	c;
-	int player_count;
+	int	player_count;
 
 	y = 0;
 	player_count = 0;
 	while (map->matrix[y])
 	{
 		x = 0;
-		while(map->matrix[y][x])
+		while (map->matrix[y][x])
 		{
 			c = map->matrix[y][x];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
@@ -62,24 +63,11 @@ static int	check_player_num(t_mapdata *map)
 	return (1);
 }
 
-static int	check_neighbors(t_mapdata *map, int y, int x)
-{
-	if (!is_valid_pos(map, y - 1, x))
-		return (0);
-	if (!is_valid_pos(map, y + 1, x))
-		return (0);
-	if (!is_valid_pos(map, y, x - 1))
-		return (0);
-	if (!is_valid_pos(map, y, x + 1))
-		return (0);
-	return (1);
-}
-
 static int	check_closed(t_mapdata *map)
 {
-	int	y;
-	int	x;
-	int	len;
+	int		y;
+	int		x;
+	int		len;
 	char	c;
 
 	y = 0;
@@ -103,16 +91,16 @@ static int	check_closed(t_mapdata *map)
 	return (1);
 }
 
-static void check_required_content(t_game *game)
+static void	check_required_content(t_game *game)
 {
-    t_mapdata *map;
+	t_mapdata	*map;
 
-    map = &game->map;
-    if (!map->no_texture || !map->so_texture
-        || !map->we_texture || !map->ea_texture)
-        ft_error(game, "missing texture identifier (NO/SO/WE/EA)");
-    if (map->floor_color == -1 || map->ceiling_color == -1)
-        ft_error(game, "missing color identifier (F/C)");
+	map = &game->map;
+	if (!map->no_texture || !map->so_texture
+		|| !map->we_texture || !map->ea_texture)
+		ft_error(game, "missing texture identifier (NO/SO/WE/EA)");
+	if (map->floor_color == -1 || map->ceiling_color == -1)
+		ft_error(game, "missing color identifier (F/C)");
 }
 
 void	validate_map(t_game *game)
@@ -120,7 +108,7 @@ void	validate_map(t_game *game)
 	t_mapdata	*map;
 
 	map = &game->map;
-	 check_required_content(game); 
+	check_required_content(game);
 	if (!check_valid_char(map))
 		ft_error(game, "Map contains invalid characters.");
 	if (!check_player_num(map))
