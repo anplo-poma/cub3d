@@ -41,7 +41,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-
 void	draw_column(t_img *img, t_ray *ray, t_game *game, int x)
 {
 	t_texture	*tex;
@@ -56,19 +55,19 @@ void	draw_column(t_img *img, t_ray *ray, t_game *game, int x)
 		put_pixel(img, x, y++, game->map.ceiling_color);
 	while (y <= ray->draw_end)
 	{
-        tex_y = (int)tc.tex_pos % tex->height;
-        tc.tex_pos += tc.step;
-        put_pixel(img, x, y++,
-    		tex->pixels[tex_y * tex->width + tc.tex_x]);
-    }
+		tex_y = (int)tc.tex_pos % tex->height;
+		tc.tex_pos += tc.step;
+		put_pixel(img, x, y++, \
+			tex->pixels[tex_y * tex->width + tc.tex_x]);
+	}
 	while (y < game->screen_height)
 		put_pixel(img, x, y++, game->map.floor_color);
 }
 
-void    render_frame(t_game *game)
+void	render_frame(t_game *game)
 {
-	t_ray   ray;
-	int     x;
+	t_ray	ray;
+	int		x;
 
 	x = 0;
 	while (x < game->screen_width)
