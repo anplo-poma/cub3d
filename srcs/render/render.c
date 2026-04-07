@@ -58,7 +58,7 @@ void	draw_column(t_img *img, t_ray *ray, t_game *game, int x)
 	{
 		tex_y = (int)tc.tex_pos % tex->height;
 		tc.tex_pos += tc.step;
-		put_pixel(img, x, y++,
+		put_pixel(img, x, y++, \
 			tex->pixels[tex_y * tex->width + tc.tex_x]);
 	}
 	while (y < game->screen_height)

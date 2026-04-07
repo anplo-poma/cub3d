@@ -29,6 +29,7 @@ SRCS        = $(SRCS_DIR)/main.c \
               $(SRCS_DIR)/hook.c \
               $(SRCS_DIR)/render/render.c \
               $(SRCS_DIR)/render/find_wall.c \
+			  $(SRCS_DIR)/render/find_wall_tools.c \
 			  $(SRCS_DIR)/render/find_player.c \
 			  $(SRCS_DIR)/render/texture.c \
               $(SRCS_DIR)/player_move.c \
