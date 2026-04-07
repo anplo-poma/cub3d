@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:07:15 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/31 17:31:39 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/07 22:58:51 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-        ft_free_all(game);//later
+		ft_free_all(game);
 		exit(0);
 	}
 	if (keycode == KEY_W)
@@ -46,15 +46,14 @@ int	key_release(int keycode, t_game *game)
 		game->move_x = 0;
 	if (keycode == KEY_LEFT  && game->rotate == -1)
 		game->rotate = 0;
-    if (keycode == KEY_RIGHT && game->rotate == 1) 
+	if (keycode == KEY_RIGHT && game->rotate == 1) 
 		game->rotate = 0;
 	return (0);
 }
 
 int	close_window(t_game *game)
 {
-	//game->win = NULL;
-    ft_free_all(game);//later
+	ft_free_all(game);
 	exit(0);
 	return (0);
 }

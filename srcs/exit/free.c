@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:10:07 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/02 22:54:42 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/07 21:35:12 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	ft_free_matrix(char **matrix)
-{
-	int	i;
-
-	if (!matrix)
-		return ;
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-static void	ft_free_mapdata(t_mapdata *map)
+static void	ft_free_mapdata1(t_mapdata *map)
 {
 	if (map->no_texture)
 	{
@@ -46,6 +34,10 @@ static void	ft_free_mapdata(t_mapdata *map)
 		free(map->ea_texture);
 		map->ea_texture = NULL;
 	}
+}
+
+static void	ft_free_mapdata2(t_mapdata *map)
+{
 	if (map->raw_str)
 	{
 		free(map->raw_str);
@@ -90,6 +82,7 @@ static void	ft_free_textures(t_game *game)
 /*
 img → window → display → free(mlx itself)
 */
+
 static void	ft_free_mlx(t_game *game)
 {
 	if (game->mlx && game->img.img_ptr)
@@ -117,7 +110,8 @@ void	ft_free_all(t_game *game)
 	get_next_line(-1);
 	if (game->fd > 0)
 		close(game->fd);
-	ft_free_mapdata(&game->map);
+	ft_free_mapdata1(&game->map);
+	ft_free_mapdata2(&game->map);
 	ft_free_textures(game);
 	ft_free_mlx(game);
 }
