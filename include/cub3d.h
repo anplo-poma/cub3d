@@ -162,16 +162,18 @@ int		close_window(t_game *game);
 void	setup_hooks(t_game *game);
 
 /* ============================================================ */
-/*  srcs/find_wall.c                                            */
+/*  srcs/find_wall_tools.c                                            */
 /* ============================================================ */
 void	calcu_camera_x(t_ray *ray, int x, int screen_width);
 void	calcu_ray_dir(t_ray *ray, t_player *player);
 void	calcu_deltadist(t_ray *ray);
 void	calcu_sidedist(t_ray *ray, t_player *player);
 void	init_step(t_ray *ray);
-void	dda_hit_wall(t_ray *ray, int hit, char **map);
-void	find_wall(t_ray *ray, t_player *player, char **map,
-			int x, int screen_width);
+
+/* ============================================================ */
+/*  srcs/find_wall.c                                            */
+/* ============================================================ */
+void	find_wall(t_ray *ray, t_game *game, int x);
 
 /* ============================================================ */
 /*  srcs/render.c                                               */
@@ -239,6 +241,6 @@ char	*trim_newline(char *s);
 int		is_empty_line(char *line);
 int		is_map_line(char *line);
 int     is_valid_pos(t_mapdata *map, int y, int x);
-
+int     check_neighbors(t_mapdata *map, int y, int x);
 
 #endif

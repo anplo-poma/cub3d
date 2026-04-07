@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-
 static void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();

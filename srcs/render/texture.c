@@ -12,33 +12,34 @@
 
 #include "cub3d.h"
 
-
 //special free for mlx becuase here the img_ptr has not in game struct yet need to free
-static void load_one_texture(t_game *game, t_texture *tex, char* path)
+static void	load_one_texture(t_game *game, t_texture *tex, char *path)
 {
-	void    *img_ptr;
-	char    *addr;
-	int     bpp;
-	int     line_len;
-	int     endian;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		y;
+	int		x;
 
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
 	if (!img_ptr)
 		ft_error(game, "texture loading failed");
 	addr = mlx_get_data_addr(img_ptr, &bpp, &line_len, &endian);
-	tex->pixels = malloc(sizeof(int)* tex->width * tex->height);
+	tex->pixels = malloc(sizeof(int) * tex->width * tex->height);
 	if (!tex->pixels)
 	{
 		mlx_destroy_image(game->mlx, img_ptr);
 		ft_error(game, "malloc failed in load_one_texture");
 	}
-	int y = 0;
+	y = 0;
 	while (y < tex->height)
 	{
-		int x = 0;
+		x = 0;
 		while (x < tex->width)
 		{
-			tex->pixels[y * tex->width + x] =
+			tex->pixels[y * tex->width + x] = \
 				*(int *)(addr + y * line_len + x * (bpp / 8));
 			x++;
 		}
@@ -47,7 +48,7 @@ static void load_one_texture(t_game *game, t_texture *tex, char* path)
 	mlx_destroy_image(game->mlx, img_ptr);
 }
 
-void    load_textures(t_game *game)
+void	load_textures(t_game *game)
 {
 	load_one_texture(game, &game->tex_no, game->map.no_texture);
 	load_one_texture(game, &game->tex_so, game->map.so_texture);
@@ -66,8 +67,8 @@ t_texture	*get_texture(t_ray *ray, t_game *game)
 	return (&game->tex_ea);
 }
 
-void calcu_tex(t_ray *ray, t_texture *tex,
-                      t_texcalc *tc, int screen_height)
+void	calcu_tex(t_ray *ray, t_texture *tex, \
+	t_texcalc *tc, int screen_height)
 {
 	tc->tex_x = (int)(ray->wall_x * tex->width);
 	if (ray->side == 0 && ray->dir_x < 0)
@@ -75,8 +76,8 @@ void calcu_tex(t_ray *ray, t_texture *tex,
 	if (ray->side == 1 && ray->dir_y > 0)
 		tc->tex_x = tex->width - tc->tex_x - 1;
 	tc->step = (double)tex->height / ray->line_height;
-	tc->tex_pos = (ray->draw_start - screen_height / 2
-					+ ray->line_height / 2) * tc->step;
+	tc->tex_pos = (ray->draw_start - screen_height / 2 \
+		+ ray->line_height / 2) * tc->step;
 }
 
 /*
@@ -102,9 +103,9 @@ static void calcu_tex(t_ray *ray, t_texture *tex,
 
 void	calcu_wall_x(t_ray *ray, t_player *player)
 {
-    if (ray->side == 0)
-        ray->wall_x = player->player_y + ray->wall_dist * ray->dir_y;
-    else
-        ray->wall_x = player->player_x + ray->wall_dist * ray->dir_x;
-    ray->wall_x -= floor(ray->wall_x);
+	if (ray->side == 0)
+		ray->wall_x = player->player_y + ray->wall_dist * ray->dir_y;
+	else
+		ray->wall_x = player->player_x + ray->wall_dist * ray->dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
