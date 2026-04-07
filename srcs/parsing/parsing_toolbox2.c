@@ -30,12 +30,12 @@ int	is_map_line(char *line)
 	p = line;
 	while (*p == ' ' || *p == '\t')
 		p++;
-	if ((*p == 'N' && *(p+1) == 'O') ||
-		(*p == 'S' && *(p+1) == 'O') ||
-		(*p == 'W' && *(p+1) == 'E') ||
-		(*p == 'E' && *(p+1) == 'A') ||
-		(*p == 'F' && *(p+1) == ' ') ||
-		(*p == 'C' && *(p+1) == ' '))
+	if ((*p == 'N' && *(p + 1) == 'O') || \
+		(*p == 'S' && *(p + 1) == 'O') || \
+		(*p == 'W' && *(p + 1) == 'E') || \
+		(*p == 'E' && *(p + 1) == 'A') || \
+		(*p == 'F' && *(p + 1) == ' ') || \
+		(*p == 'C' && *(p + 1) == ' '))
 		return (0);
 	return (*p == '0' || *p == '1' || *p == 'N' || *p == 'S'
 		|| *p == 'E' || *p == 'W' || *p == ' ');
@@ -51,6 +51,19 @@ int	is_valid_pos(t_mapdata *map, int y, int x)
 	if (x < 0 || x >= len)
 		return (0);
 	if (map->matrix[y][x] == ' ')
+		return (0);
+	return (1);
+}
+
+int	check_neighbors(t_mapdata *map, int y, int x)
+{
+	if (!is_valid_pos(map, y - 1, x))
+		return (0);
+	if (!is_valid_pos(map, y + 1, x))
+		return (0);
+	if (!is_valid_pos(map, y, x - 1))
+		return (0);
+	if (!is_valid_pos(map, y, x + 1))
 		return (0);
 	return (1);
 }

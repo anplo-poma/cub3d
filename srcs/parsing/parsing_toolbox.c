@@ -14,9 +14,9 @@
 
 char	*skip_spaces(char *str)
 {
-    while (*str == ' ' || *str == '\t')
-        str++;
-    return (str);
+	while (*str == ' ' || *str == '\t')
+		str++;
+	return (str);
 }
 
 // without free version(free once in gnl)
@@ -28,6 +28,7 @@ int	handle_empty_line(t_game *game, char *line, int map_start)
 		ft_error(game, "empty line in map");
 	return (1);
 }
+
 /*
 int  handle_empty_line(char *line, int map_start)
 {
@@ -42,6 +43,7 @@ int  handle_empty_line(char *line, int map_start)
 	return (1);
 }
 */
+
 int	is_all_digits(char *str)
 {
 	int	i;
@@ -61,10 +63,8 @@ int	is_all_digits(char *str)
 void	ft_cub_strlcpy(char *dst, const char *src, size_t dest_siz)
 {
 	size_t	i;
-	//size_t	len;
 
 	i = 0;
-	//len = ft_strlen(src);
 	if (dest_siz > 0)
 	{
 		while (src[i] && i < dest_siz - 1)
@@ -75,10 +75,12 @@ void	ft_cub_strlcpy(char *dst, const char *src, size_t dest_siz)
 	}
 }
 
-char *trim_newline(char *s)
+char	*trim_newline(char *s)
 {
-	int len = ft_strlen(s);
+	int	len;
+
+	len = ft_strlen(s);
 	if (len > 0 && s[len - 1] == '\n')
 		s[len - 1] = '\0';
-	return s;
+	return (s);
 }
