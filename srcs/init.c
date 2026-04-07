@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:47:10 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/03 15:10:58 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/07 22:59:16 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ static void	init_mapdata(t_mapdata *map)
 	map->ceiling_color = -1;
 	map->rows = 0;
 	map->cols = 0;
-	map->raw_str = ft_strdup("");   // new version ori NULL
+	map->raw_str = ft_strdup("");
 	map->raw_lines = NULL;
 	map->matrix = NULL;
 }
+//	map->raw_str = ft_strdup("");   // new version ori NULL
 
 static void	init_player(t_player *player)
 {
@@ -33,7 +34,7 @@ static void	init_player(t_player *player)
 	player->player_y = 0;
 	player->player_dir_x = -1;
 	player->player_dir_y = 0;
-	player->plane_x = 0;//view
+	player->plane_x = 0;
 	player->plane_y = 0.66;
 }
 

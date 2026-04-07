@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_toolbox.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:03:50 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/28 00:54:43 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/07 21:49:34 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ int	handle_empty_line(t_game *game, char *line, int map_start)
 		ft_error(game, "empty line in map");
 	return (1);
 }
-
-/*
-int  handle_empty_line(char *line, int map_start)
-{
-	if (!is_empty_line(line))
-		return (0);
-	if (map_start == 1)
-	{
-		free(line);
-		ft_error("error msg: empty line in map");
-	}
-	free(line);
-	return (1);
-}
-*/
 
 int	is_all_digits(char *str)
 {
@@ -75,7 +60,9 @@ void	ft_cub_strlcpy(char *dst, const char *src, size_t dest_siz)
 	}
 }
 
-char	*trim_newline(char *s)
+// trim_newline
+
+char	*trimnl(char *s)
 {
 	int	len;
 

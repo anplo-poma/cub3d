@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   find_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhao <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:04:32 by lhao              #+#    #+#             */
-/*   Updated: 2026/04/07 20:24:58 by lhao             ###   ########.fr       */
+/*   Updated: 2026/04/07 22:01:22 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //dda部分，以地图内的格子为界，判断当前格子是否为墙壁, side
-static void	dda_hit_wall(t_ray *ray, int hit, char **map)
+void	dda_hit_wall(t_ray *ray, int hit, char **map)
 {
 	while (hit == 0)
 	{

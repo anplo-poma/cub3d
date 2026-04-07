@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xueyan_wang <xueyan_wang@student.42.fr>    +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 23:03:30 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/03/31 17:45:08 by xueyan_wang      ###   ########.fr       */
+/*   Updated: 2026/04/07 22:58:17 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	move_right(t_game *game)
 		game->player.player_y = new_y;
 }
 
-//旋转 = 角度相加，角度相加 = cos/sin 的展开式。
+//rotate = angle puls angle = cos/sin calculation。
 /*
 (x, y) = (cos α, sin α)
 turn angle:
@@ -127,7 +127,7 @@ void	move_player(t_game *game)
 	if (game->move_x == 1)
 		move_left(game);
 	if (game->rotate == 1)
-		rotate_player(game, ROTSPEED); //turn left
+		rotate_player(game, ROTSPEED);
 	if (game->rotate == -1)
-		rotate_player(game, -ROTSPEED); //right
+		rotate_player(game, -ROTSPEED);
 }

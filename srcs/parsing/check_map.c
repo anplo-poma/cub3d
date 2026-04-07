@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannahhao <hannahhao@student.42.fr>        +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:31:54 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/01 20:26:03 by hannahhao        ###   ########.fr       */
+/*   Updated: 2026/04/07 21:40:30 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	build_matrix(t_mapdata *mapdata)
 	int	max_len;
 
 	mapdata->raw_lines = ft_split(mapdata->raw_str, '\n');
-    //free(mapdata->raw_str); could give it to free all later
 	i = 0;
 	max_len = 0;
 	while (mapdata->raw_lines[i])
