@@ -26,7 +26,7 @@ void	ft_free_matrix(char **matrix)
 
 int	ft_error(t_game *game, const char *errmsg)
 {
-	ft_printf("Error: %s\n", errmsg);
+	ft_printf("Error\n%s\n", errmsg);
 	ft_free_all(game);
 	exit(1);
 }

@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_printf("Error: Usage: ./cub3D <map.cub>\n");
+		ft_printf("Error\nUsage: ./cub3D <map.cub>\n");
 		return (1);
 	}
 	init_game(&game);
