@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:32:38 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/12 18:39:06 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:02:02 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<string.h>
-//#include <string.h>
-//#define ft_strlen strlen
+
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dest_siz)
 {

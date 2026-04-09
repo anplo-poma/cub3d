@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:50:03 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/12 13:03:18 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:00:26 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include<stdio.h>
-#include"libft.h"
+#include "libft.h"
 
 size_t	len_cal(int n)
 {
