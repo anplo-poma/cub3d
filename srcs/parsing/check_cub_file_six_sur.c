@@ -6,7 +6,7 @@
 /*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 21:36:55 by xuewang           #+#    #+#             */
-/*   Updated: 2026/04/07 21:49:52 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 12:15:15 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	parse_rgb(char *str)
 {
 	char	**parts;
+	char	*trimmed;
 	int		rgb[3];
 	int		i;
 
@@ -29,6 +30,8 @@ int	parse_rgb(char *str)
 	i = 0;
 	while (i < 3)
 	{
+		trimmed = skip_spaces(parts[i]);
+		trimnl(trimmed);
 		rgb[i] = ft_atoi(parts[i]);
 		if (!is_all_digits(parts[i]) || rgb[i] < 0 || rgb[i] > 255)
 			return (ft_free_matrix(parts), -1);
@@ -73,6 +76,23 @@ void	set_co(t_game *game, char *line, int *field, char *value)
 	*field = color;
 }
 
+static void	check_missing_space(t_game *game, char *line)
+{
+	if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
+		|| ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0)
+	{
+		free(line);
+		ft_error(game, "missing space after texture identifier");
+	}
+	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
+	{
+		free(line);
+		ft_error(game, "missing space after color identifier");
+	}
+	free(line);
+	ft_error(game, "unknown identifier");
+}
+
 void	read_six_surface_to_struct(t_game *game, char *line)
 {
 	t_mapdata	*map;
@@ -91,8 +111,5 @@ void	read_six_surface_to_struct(t_game *game, char *line)
 	else if (ft_strncmp(line, "C ", 2) == 0)
 		set_co(game, line, &map->ceiling_color, trimnl(skip_spaces(line + 2)));
 	else
-	{
-		free(line);
-		ft_error(game, "unknown identifier");
-	}
+		check_missing_space(game, line);
 }
