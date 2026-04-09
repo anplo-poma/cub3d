@@ -6,7 +6,7 @@
 /*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 16:46:56 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/07 22:54:02 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 11:54:14 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	calcu_wall_dist(t_ray *ray)
 void	calcu_wall_height(t_ray *ray, int screen_height)
 {
 	ray->line_height = (int)(screen_height / ray->wall_dist);
+	if (ray->line_height == 0)
+		ray->line_height = 1;
 	ray->draw_start = -ray->line_height / 2 + screen_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;

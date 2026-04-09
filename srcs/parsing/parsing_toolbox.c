@@ -6,7 +6,7 @@
 /*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 15:03:50 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/07 21:49:34 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 11:53:03 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char	*trimnl(char *s)
 
 	len = ft_strlen(s);
 	if (len > 0 && s[len - 1] == '\n')
+		s[--len] = '\0';
+	if (len > 0 && s[len - 1] == '\r')
 		s[len - 1] = '\0';
 	return (s);
 }
