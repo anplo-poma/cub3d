@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 17:49:04 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/12 16:03:35 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:01:09 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include<string.h>
-//#include<stdlib.h>
-//#include<stdio.h>
-#include"libft.h"
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

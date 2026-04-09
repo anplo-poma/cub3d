@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:11:20 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/06 22:02:41 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 13:59:32 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
-//#include<stdio.h>
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

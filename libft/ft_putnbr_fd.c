@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:08:22 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/12 13:14:50 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:01:18 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include<limits.h>
-//#include<stdlib.h>
-//#include<unistd.h>
-#include"libft.h"
+#include "libft.h"
 
 void	ft_putchar(long n, int fd)
 {

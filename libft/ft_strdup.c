@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 22:47:17 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/06 22:41:23 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:01:35 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
-//#include<stdio.h>
-//#include<string.h>
+#include "libft.h"
+
 char	*ft_strdup(const char *str)
 {
 	int		i;

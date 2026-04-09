@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xuewang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:31:48 by xuewang           #+#    #+#             */
-/*   Updated: 2025/05/12 18:55:02 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 14:01:55 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include<string.h>
-#include<stdlib.h>
-#include<stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 //#define ft_strlen strlen
 
