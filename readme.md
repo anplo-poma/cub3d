@@ -48,7 +48,7 @@ ESC             Close window and exit
 Red cross (✕)   Close window and exit
 ```
 
-# Discription
+# Description
 cub3D (a 42 school project)is a first-person 3D representation of a maze using raycasting, which should be similar to Wolfenstein 3D project.
 
 The goal is to render a realistic 3D first-person perspective of the inside of a maze, starting from a 2D map file. The rendering engine is built from scratch in C using the Digital Differential Analyzer (DDA) raycasting algorithm and the miniLibX graphics library.
