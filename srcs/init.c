@@ -6,27 +6,11 @@
 /*   By: xuewang <xuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 16:47:10 by xueyan_wang       #+#    #+#             */
-/*   Updated: 2026/04/07 22:59:16 by xuewang          ###   ########.fr       */
+/*   Updated: 2026/04/09 10:37:45 by xuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static void	init_mapdata(t_mapdata *map)
-{
-	map->no_texture = NULL;
-	map->so_texture = NULL;
-	map->we_texture = NULL;
-	map->ea_texture = NULL;
-	map->floor_color = -1;
-	map->ceiling_color = -1;
-	map->rows = 0;
-	map->cols = 0;
-	map->raw_str = ft_strdup("");
-	map->raw_lines = NULL;
-	map->matrix = NULL;
-}
-//	map->raw_str = ft_strdup("");   // new version ori NULL
 
 static void	init_player(t_player *player)
 {

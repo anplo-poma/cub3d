@@ -26,16 +26,21 @@ PRINTF_LIB  = $(PRINTF_DIR)/libftprintf.a
 
 SRCS        = $(SRCS_DIR)/main.c \
               $(SRCS_DIR)/init.c \
+			  $(SRCS_DIR)/init_2.c \
               $(SRCS_DIR)/hook.c \
               $(SRCS_DIR)/render/render.c \
               $(SRCS_DIR)/render/find_wall.c \
 			  $(SRCS_DIR)/render/find_wall_tools.c \
 			  $(SRCS_DIR)/render/find_player.c \
+			  $(SRCS_DIR)/render/set_player_dir.c \
 			  $(SRCS_DIR)/render/texture.c \
+			  $(SRCS_DIR)/render/texture2.c \
               $(SRCS_DIR)/player_move.c \
+			  $(SRCS_DIR)/player_move2.c \
               $(SRCS_DIR)/exit/error.c \
               $(SRCS_DIR)/exit/free.c \
               $(SRCS_DIR)/parsing/check_cub_file.c \
+			  $(SRCS_DIR)/parsing/check_cub_file_six_sur.c \
               $(SRCS_DIR)/parsing/check_map.c \
 			  $(SRCS_DIR)/parsing/validate_map.c \
               $(SRCS_DIR)/parsing/parsing_toolbox.c \
